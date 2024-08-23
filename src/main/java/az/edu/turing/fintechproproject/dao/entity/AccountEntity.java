@@ -1,4 +1,4 @@
-package az.edu.turing.fintechproproject.entity;
+package az.edu.turing.fintechproproject.dao.entity;
 
 import az.edu.turing.fintechproproject.model.enums.AccountStatus;
 import jakarta.persistence.*;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountEntity {
+public class AccountEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +35,4 @@ public class AccountEntity {
     @Column(name = "cvv", length = 3)
     private String cvv;
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
 }
