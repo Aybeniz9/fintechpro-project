@@ -2,15 +2,16 @@ package az.edu.turing.fintechproproject.dao.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import lombok.experimental.SuperBuilder;
 
 
+import java.util.List;
+
+@Data
 @Entity(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@SuperBuilder
 @NoArgsConstructor
 
 public class UserEntity extends BaseEntity {
@@ -42,6 +43,7 @@ public class UserEntity extends BaseEntity {
 
     @Column(name = "address")
     String address;
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<AccountEntity> accounts;
 
 }
