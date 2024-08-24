@@ -107,5 +107,4 @@ public class UserService {
         userRepository.deleteAll();
         log.info("All users deleted");
     }
-
 }
