@@ -4,8 +4,8 @@ import az.edu.turing.fintechproproject.dao.entity.UserEntity;
 import az.edu.turing.fintechproproject.dao.repository.UserRepository;
 import az.edu.turing.fintechproproject.mapper.UserMapper;
 import az.edu.turing.fintechproproject.model.dto.UserDto;
-import exception.UserAlreadyExistsException;
-import exception.UserNotFoundException;
+import az.edu.turing.fintechproproject.exception.UserAlreadyExistsException;
+import az.edu.turing.fintechproproject.exception.UserNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

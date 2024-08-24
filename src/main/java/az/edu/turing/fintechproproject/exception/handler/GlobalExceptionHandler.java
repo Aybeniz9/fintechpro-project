@@ -1,5 +1,6 @@
-package exception.handler;
+package az.edu.turing.fintechproproject.exception.handler;
 
+import az.edu.turing.fintechproproject.exception.*;
 import exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

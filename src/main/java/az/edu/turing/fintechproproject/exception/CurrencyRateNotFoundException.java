@@ -1,4 +1,4 @@
-package exception;
+package az.edu.turing.fintechproproject.exception;
 
 public class CurrencyRateNotFoundException extends RuntimeException {
     public CurrencyRateNotFoundException(String message) {

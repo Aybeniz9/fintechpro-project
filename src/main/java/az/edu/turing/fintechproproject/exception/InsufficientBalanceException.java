@@ -1,4 +1,4 @@
-package exception;
+package az.edu.turing.fintechproproject.exception;
 
 public class InsufficientBalanceException extends RuntimeException {
     public InsufficientBalanceException(String message) {

@@ -1,4 +1,4 @@
-package exception;
+package az.edu.turing.fintechproproject.exception;
 
 public class SameAccountTransferException extends RuntimeException {
     public SameAccountTransferException(String message) {

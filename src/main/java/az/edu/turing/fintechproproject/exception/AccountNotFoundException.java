@@ -1,4 +1,4 @@
-package exception;
+package az.edu.turing.fintechproproject.exception;
 
 public class AccountNotFoundException extends RuntimeException {
     public AccountNotFoundException(String message) {
