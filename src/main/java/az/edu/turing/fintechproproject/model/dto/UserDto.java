@@ -1,4 +1,5 @@
 package az.edu.turing.fintechproproject.model.dto;
+
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,6 +40,8 @@ public class UserDto {
     @Size(max = 255, message = "Address cannot exceed 255 characters")
     String address;
 
+    @NotBlank
+    String password;
 //    @NotBlank(message = "Status is required")
 //    String status;
 }
