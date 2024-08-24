@@ -19,10 +19,10 @@ public class AccountEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_number", nullable = false, unique = true, length = 16)
+    @Column(name = "account_number", unique = true)
     private String accountNumber;
 
-    @Column(name = "balance", nullable = false)
+    @Column(name = "balance")
     private BigDecimal balance;
 
     @Enumerated(EnumType.STRING)
