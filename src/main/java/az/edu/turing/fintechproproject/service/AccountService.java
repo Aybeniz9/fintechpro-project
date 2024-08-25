@@ -4,11 +4,13 @@ import az.edu.turing.fintechproproject.dao.repository.AccountRepository;
 import az.edu.turing.fintechproproject.mapper.AccountMapper;
 import az.edu.turing.fintechproproject.model.dto.AccountDto;
 import az.edu.turing.fintechproproject.dao.entity.AccountEntity;
+import az.edu.turing.fintechproproject.model.enums.AccountStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,12 +33,52 @@ public class AccountService {
     }
 
     @Transactional(readOnly = true)
+    public BigDecimal getBalance(Long accountId) {
+        AccountEntity accountEntity = accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        log.info("Retrieved balance for account ID {}: {}", accountId, accountEntity.getBalance());
+        return accountEntity.getBalance();
+    }
+
+    @Transactional(readOnly = true)
     public AccountDto getAccountById(Long accountId) {
         Optional<AccountEntity> accountOptional = accountRepository.findById(accountId);
 
         return accountOptional.map(accountMapper::entityToDto)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
     }
+
+    @Transactional(readOnly = true)
+    public AccountStatus getAccountStatus(Long accountId) {
+        AccountEntity accountEntity = accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        log.info("Retrieved account status for account ID {}: {}", accountId, accountEntity.getAccountStatus());
+        return accountEntity.getAccountStatus();
+    }
+
+    @Transactional
+    public void blockAccount(Long accountId) {
+        AccountEntity accountEntity = accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        accountEntity.setAccountStatus(AccountStatus.BLOCKED);
+        accountRepository.save(accountEntity);
+
+        log.info("Blocked account with ID: {}", accountId);
+    }
+
+    @Transactional
+    public void activateAccount(Long accountId) {
+        AccountEntity accountEntity = accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        accountEntity.setAccountStatus(AccountStatus.ACTIVE);
+        accountRepository.save(accountEntity);
+
+        log.info("Activated account with ID: {}", accountId);
+    }
+
 
     @Transactional
     public void updateAccount(Long accountId, AccountDto accountDto) {
